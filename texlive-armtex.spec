@@ -6,7 +6,7 @@
 # catalog-version 3.0-beta3
 Name:		texlive-armtex
 Version:	3.0.beta3
-Release:	3
+Release:	4
 Summary:	A sytem for writing Armenian with TeX and LaTeX
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/language/armenian/armtex
