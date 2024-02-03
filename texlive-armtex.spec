@@ -1,6 +1,6 @@
 Name:		texlive-armtex
-Version:	64182
-Release:	2
+Version:	69418
+Release:	1
 Summary:	A sytem for writing Armenian with TeX and LaTeX
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/language/armenian/armtex
