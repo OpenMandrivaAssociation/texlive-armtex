@@ -3,7 +3,7 @@ Version:	69418
 Release:	1
 Summary:	A sytem for writing Armenian with TeX and LaTeX
 Group:		Publishing
-URL:		http://www.ctan.org/tex-archive/language/armenian/armtex
+URL:		https://www.ctan.org/tex-archive/language/armenian/armtex
 License:	LPPL
 Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/armtex.r%{version}.tar.xz
 Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/armtex.doc.r%{version}.tar.xz
