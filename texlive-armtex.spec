@@ -1,60 +1,31 @@
-Name:		texlive-armtex
-Version:	69418
-Release:	1
-Summary:	A sytem for writing Armenian with TeX and LaTeX
+%global tl_name armtex
+%global tl_revision 69418
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	3.0~beta5
+Release:	%{tl_revision}.1
+Summary:	A system for writing in Armenian with TeX and LaTeX
 Group:		Publishing
 URL:		https://www.ctan.org/tex-archive/language/armenian/armtex
-License:	LPPL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/armtex.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/armtex.doc.r%{version}.tar.xz
+License:	lppl1.3
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/armtex.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/armtex.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
+BuildSystem:	texlive
 BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
-Requires(post):	texlive-tetex
+%texlive_base_requires
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-ArmTeX is a system for typesetting Armenian text with Plain TeX
-or LaTeX(2e). It may be used with input: from a standard Latin
-keyboard without any special encoding and/or support for
-Armenian letters, any keyboard which uses an encoding that has
-Armenian letters in the second half (characters 128-255) of the
-extended ASCII table (for example ArmSCII8 Armenian standard),
-or encoded in UTF-8. Users should note that the manuals (below)
-mostly describe the previous (version 2.0) of the package.
-Updating work is still under way.
+ArmTeX is a system for typesetting Armenian text with Plain TeX or
+LaTeX(2e). It may be used with input: from a standard Latin keyboard
+without any special encoding and/or support for Armenian letters, from
+any keyboard which uses an encoding that has Armenian letters in the
+second half (characters 128-255) of the extended ASCII table (for
+example ArmSCII8 Armenian standard), from an Armenian keyboard using
+UTF-8 encoding. Users should note that the manuals still mostly describe
+the previous version of the package (ArmTeX 2.0). However, a description
+of the new features of ArmTeX 3.0 is provided at the end of the README
+file.
 
-%post
-%{_sbindir}/texlive.post
-
-%postun
-if [ $1 -eq 0 ]; then
-	%{_sbindir}/texlive.post
-fi
-
-#-----------------------------------------------------------------------
-%files
-%{_texmfdistdir}/fonts/afm/public/armenian
-%{_texmfdistdir}/fonts/map/dvips/armenian
-%{_texmfdistdir}/fonts/source/public/armenian
-%{_texmfdistdir}/fonts/tfm/public/armenian
-%{_texmfdistdir}/fonts/type1/public/armenian
-%{_texmfdistdir}/tex/plain/armenian
-%{_texmfdistdir}/tex/latex/armenian
-%_texmf_updmap_d/armtex
-%doc %{_texmfdistdir}/doc/generic/armenian
-
-#-----------------------------------------------------------------------
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -fpar fonts tex doc %{buildroot}%{_texmfdistdir}
-mkdir -p %{buildroot}%{_texmf_updmap_d}
-cat > %{buildroot}%{_texmf_updmap_d}/armtex <<EOF
-MixedMap arss.map
-MixedMap artm.map
-EOF
