@@ -1,9 +1,10 @@
 %global tl_name armtex
 %global tl_revision 69418
+%global tl_version 3.0~beta5
 
 Name:		texlive-%{tl_name}
 Epoch:		1
-Version:	3.0~beta5
+Version:	%{tl_version}
 Release:	%{tl_revision}.1
 Summary:	A system for writing in Armenian with TeX and LaTeX
 Group:		Publishing
@@ -13,7 +14,8 @@ Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/armtex.r%{tl_rev
 Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/armtex.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
 BuildSystem:	texlive
-Provides:	texlive(%{tl_name}) = %{tl_revision}
+Requires:	texlive-tlpkg
+Provides:	texlive(%{tl_name}) = %{version}
 
 %description
 ArmTeX is a system for typesetting Armenian text with Plain TeX or
@@ -27,3 +29,11 @@ the previous version of the package (ArmTeX 2.0). However, a description
 of the new features of ArmTeX 3.0 is provided at the end of the README
 file.
 
+
+%install -a
+mkdir -p %{buildroot}%{_texmf_updmap_d}
+cat > %{buildroot}%{_texmf_updmap_d}/%{tl_name} <<'TL_DROPIN_EOF'
+# from armtex:
+MixedMap arss.map
+MixedMap artm.map
+TL_DROPIN_EOF
